@@ -4,7 +4,7 @@ let determineWinner = require('../src/js/rockpaperscissors.js')
 describe('rockPaperScissors', () => {
     // let rockPaperScissors = new RockPaperScissors
     
-    describe('tie', () => {
+    describe('tie scenario', () => {
         it('should return "tie" on "rock", "rock"', () => {
             expect(determineWinner('rock', 'rock')).to.equal('tie');
         });
@@ -19,6 +19,20 @@ describe('rockPaperScissors', () => {
 
     })
 
+    describe('player winning"', () => {
+        it('should return "You win!" on "rock", "scissors"', () => {
+            expect(determineWinner('rock', 'scissors')).to.equal('You win!');
+        });
+
+        it('should return "You win!" on "paper", "rock"', () => {
+            expect(determineWinner('paper', 'rock')).to.equal('You win!');
+        });
+
+        it('should return "You win!" on "scissors", "paper"', () => {
+            expect(determineWinner('scissors', 'paper')).to.equal('You win!');
+        });
+
+    })
 
 
 })

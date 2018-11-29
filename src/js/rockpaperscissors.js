@@ -21,11 +21,9 @@ module.exports = function determineWinner(playerChoice, computerChoice) {
     if ((playerChoice === 'rock' && computerChoice === 'scissors') ||
         (playerChoice === 'paper' && computerChoice === 'rock') ||
         (playerChoice === 'scissors' && computerChoice === 'paper')) {
-        return 'Coolio, you win!';
+        return 'You win!';
     };
     
-    // all other scenarios, computer wins
-    return 'Loser!';
 };
 
 
