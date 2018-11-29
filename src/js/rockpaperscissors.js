@@ -1,4 +1,3 @@
-
 module.exports = function computerChoice() {
     number = Math.floor(Math.random()*2)
     switch (number) {
@@ -14,7 +13,7 @@ module.exports = function determineWinner(playerChoice, computerChoice) {
 
     //  scenarios where there is a tie
     if (playerChoice === computerChoice) {
-        return 'tie';
+        return 'Tie!';
     };
 
     // scenarios where player wins
@@ -24,6 +23,6 @@ module.exports = function determineWinner(playerChoice, computerChoice) {
         return 'You win!';
     };
     
+    // all other scenarios, computer wins
+    return 'Loser!';
 };
-
-

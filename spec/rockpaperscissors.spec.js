@@ -2,19 +2,18 @@ const { RockPaperScissors } =  require('./spec.helper')
 let determineWinner = require('../src/js/rockpaperscissors.js')
 
 describe('rockPaperScissors', () => {
-    // let rockPaperScissors = new RockPaperScissors
     
     describe('tie scenario', () => {
-        it('should return "tie" on "rock", "rock"', () => {
-            expect(determineWinner('rock', 'rock')).to.equal('tie');
+        it('should return "Tie!" on "rock", "rock"', () => {
+            expect(determineWinner('rock', 'rock')).to.equal('Tie!');
         });
 
-        it('should return "tie" on "paper", "paper"', () => {
-            expect(determineWinner('paper', 'paper')).to.equal('tie');
+        it('should return "Tie!" on "paper", "paper"', () => {
+            expect(determineWinner('paper', 'paper')).to.equal('Tie!');
         });
 
-        it('should return "tie" on "scissors", "scissors"', () => {
-            expect(determineWinner('scissors', 'scissors')).to.equal('tie');
+        it('should return "Tie!" on "scissors", "scissors"', () => {
+            expect(determineWinner('scissors', 'scissors')).to.equal('Tie!');
         });
 
     })
@@ -30,6 +29,21 @@ describe('rockPaperScissors', () => {
 
         it('should return "You win!" on "scissors", "paper"', () => {
             expect(determineWinner('scissors', 'paper')).to.equal('You win!');
+        });
+
+    })
+
+    describe('computer winning"', () => {
+        it('should return "Loser!" on "scissors", "rock"', () => {
+            expect(determineWinner('scissors', 'rock')).to.equal('Loser!');
+        });
+
+        it('should return "Loser!" on "rock", "paper"', () => {
+            expect(determineWinner('rock', 'paper')).to.equal('Loser!');
+        });
+
+        it('should return "Loser!" on "paper", "scissors"', () => {
+            expect(determineWinner('paper', 'scissors')).to.equal('Loser!');
         });
 
     })
