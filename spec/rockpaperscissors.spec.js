@@ -1,8 +1,8 @@
 const { RockPaperScissors } =  require('./spec.helper')
-
+let rockPaperScissors = require('../src/js/rockpaperscissors.js')
 
 describe('rockPaperScissors', () => {
-    let rockPaperScissors = new RockPaperScissors
+    // let rockPaperScissors = new RockPaperScissors
     
     describe('tie', () => {
         it('should return "tie" on "rock", "rock"', () => {
@@ -18,5 +18,7 @@ describe('rockPaperScissors', () => {
         });
 
     })
+
+
 
 })
