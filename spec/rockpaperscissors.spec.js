@@ -1,20 +1,20 @@
 const { RockPaperScissors } =  require('./spec.helper')
-let rockPaperScissors = require('../src/js/rockpaperscissors.js')
+let determineWinner = require('../src/js/rockpaperscissors.js')
 
 describe('rockPaperScissors', () => {
     // let rockPaperScissors = new RockPaperScissors
     
     describe('tie', () => {
         it('should return "tie" on "rock", "rock"', () => {
-            expect(rockPaperScissors('rock', 'rock')).to.equal('tie');
+            expect(determineWinner('rock', 'rock')).to.equal('tie');
         });
 
         it('should return "tie" on "paper", "paper"', () => {
-            expect(rockPaperScissors('paper', 'paper')).to.equal('tie');
+            expect(determineWinner('paper', 'paper')).to.equal('tie');
         });
 
         it('should return "tie" on "scissors", "scissors"', () => {
-            expect(rockPaperScissors('scissors', 'scissors')).to.equal('tie');
+            expect(determineWinner('scissors', 'scissors')).to.equal('tie');
         });
 
     })
