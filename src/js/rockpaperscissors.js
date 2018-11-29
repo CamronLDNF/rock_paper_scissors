@@ -1,4 +1,4 @@
-module.exports = function computerChoice() {
+function getComputerChoice() {
     number = Math.floor(Math.random()*2)
     switch (number) {
     case 0:
@@ -6,8 +6,10 @@ module.exports = function computerChoice() {
     case 1:
     return 'paper';
     case 2:
-    return 'scissors';
-    }}
+    return 'scissors';}
+}
+
+const computerChoice = getComputerChoice();
 
 module.exports = function determineWinner(playerChoice, computerChoice) {
 
@@ -25,4 +27,7 @@ module.exports = function determineWinner(playerChoice, computerChoice) {
     
     // all other scenarios, computer wins
     return 'Loser!';
-};
+    };
+
+
+// playGame();
