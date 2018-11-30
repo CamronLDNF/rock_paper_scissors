@@ -1,8 +1,3 @@
-// const rock_div = document.getElementById("rock");
-// const paper_div = document.getElementById("paper");
-// const scissors_div = document.getElementById("scissors");
-
-
 function getComputerChoice() {
     number = Math.floor(Math.random()*2)
     switch (number) {
@@ -35,17 +30,17 @@ module.exports = function determineWinner(playerChoice, computerChoice) {
     };
 
 // function playGame() {
-//     rock_div.addEventListener('click', function() {
+//     rock.onClick = () => {
 //     determineWinner("rock", computerChoice);
-//     })
+//     };
     
-//     paper_div.addEventListener('click', function() {
+//     paper.onClick = () => {
 //     determineWinner("paper", computerChoice);
-//     })
+//     };
     
-//     scissors_div.addEventListener('click', function() {
+//     scissors.onClick= () => {
 //     determineWinner("scissors", computerChoice);
-//     })
+//     };
 // }
 
 // playGame()
