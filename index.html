@@ -1,20 +1,126 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rock Paper Scissors</title>
-    <link href="/src/style.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet" type="text/css">
-  </head>
+<head>
+<title>Rock Paper Scissors</title>
+    <style>
+        .container {
+            width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 25px;
+            background-color: #70c6e3;
+            box-shadow: 0 0 34px 8px rgba(0,0,0,0.4);
+            border-radius: 0.5rem;
+        }
+        .img-computer {
+            width: 230px;
+        }
+        .choice {
+            height: 150px;
+        }
+        .img-rock, .img-paper, .img-scissors {
+            width: 130px;
+            border: solid 1px rgba(0,0,0,0.1);
+            box-shadow: 5px 6px 7px #888888;
+            border-radius: 2rem;
+            margin: 10px 7px;
+        }
+        .img-rock:hover, .img-paper:hover, .img-scissors:hover {
+            background-color: #89a8d6;
+            cursor: pointer;
+        }
+        .img-rock:active, .img-paper:active, .img-scissors:active {
+            border-radius: 2.5rem;
+            margin: 0.5rem;
+            transition: all 0.05s ease;
+        }
+        .select-choice {
+            /* display: inline; */
+            display: inline-block;
+  
+        }
+    </style>
+    <script src="/src/js/rockpaperscissors.js" defer></script>
+</head>
+<body>
+    <div class="container">
 
-  <body>
-    <h1>Rock Paper Scissors</h1></p>
-    <div class="image-row">
-    	<img id="rock" src="/src/assets/rock.png">
+        <h1>Rock Paper Scissors</h1>
+
+        <div class="computer">
+            <div class="computerchoice"></div>
+            <img class="img-computer" src="https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png">
+            <p>Computer</p>
+        </div>
+        
+        <div id="result">Results</div>
+
+        <p id="instruction">Select your weapon of choice:</p>
+        <div class="choice">
+            <div class="select-choice" id="rock">
+                <img class="img-rock" src="https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png">
+            </div>
+            <div class="select-choice" id="paper">
+                <img class="img-paper" src="https://res.cloudinary.com/itsellej/image/upload/v1533400143/rock-paper-scissors/paper.png">
+            </div>
+            <div class="select-choice" id="scissors">
+                <img class="img-scissors" src="https://res.cloudinary.com/itsellej/image/upload/v1533400144/rock-paper-scissors/scissors.png">
+            </div>
+        </div>
+
     </div>
 
-  </body>
+    <script>
 
-    <script src="/src/js/rockpaperscissors.js"></script>
-    <script type="text/javascript" src="/src/js/dom_eventlistener.js"></script>
+    const rockDiv = document.getElementById("rock");
+    const paperDiv = document.getElementById("paper");
+    const scissorsDiv = document.getElementById("scissors");
+    const result = document.getElementById('result');
 
+    const computerChoice = getComputerChoice()
+
+    function getComputerChoice() {
+        number = Math.floor(Math.random()*2)
+        switch (number) {
+        case 0:
+        return 'rock';
+        case 1:
+        return 'paper';
+        case 2:
+        return 'scissors';}
+    }
+
+    function determineWinner(userChoice, computerChoice) {
+
+        //  scenarios where there is a tie
+        if (userChoice === computerChoice) {
+            return 'It\'s a tie!';
+        };
+
+        // scenarios where the player wins
+        if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')) {
+            return 'You win!';
+        };
+        
+        // all other scenarios, computer wins per automatic
+        return 'Sorry, the computer wins!';
+    };
+
+    rock.addEventListener('click',function() {
+    result.innerHTML = determineWinner("rock", computerChoice);
+    });
+
+    paper.addEventListener('click', function() {
+    result.innerHTML = determineWinner("paper", computerChoice);
+    });
+
+    scissors.addEventListener('click', function() {
+    result.innerHTML = determineWinner("scissors", computerChoice);
+    });
+
+    </script>
+
+</body>
 </html>
