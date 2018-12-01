@@ -3,6 +3,20 @@
 <head>
 <title>Rock Paper Scissors</title>
     <style>
+        @keyframes count-in {
+            0% {
+                transform: translateY(0)
+            }
+            60% {
+                transform: translateY(-10px)
+            }
+            100% {
+                transform: translateY(0)
+            }
+        }
+        .count-in {
+            animation: .5s  count-in 100;
+        }
         .container {
             width: 700px;
             margin: 0 auto;
@@ -35,9 +49,11 @@
             transition: all 0.05s ease;
         }
         .select-choice {
-            /* display: inline; */
             display: inline-block;
-  
+        }
+        #result{
+            font-size: 1.4rem;
+            font-weight: 600;
         }
     </style>
     <script src="/src/js/rockpaperscissors.js" defer></script>
@@ -49,7 +65,7 @@
 
         <div class="computer">
             <div class="computerchoice"></div>
-            <img class="img-computer" src="https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png">
+            <img class="img-computer" id="computerimage" src="http://is5.mzstatic.com/image/thumb/Purple118/v4/63/2e/de/632ede7d-21ce-050f-7629-b9f4f0d2f833/source/512x512bb.png">
             <p>Computer</p>
         </div>
         
@@ -57,13 +73,13 @@
 
         <p id="instruction">Select your weapon of choice:</p>
         <div class="choice">
-            <div class="select-choice" id="rock">
+            <div class="select-choice count-in" id="rock">
                 <img class="img-rock" src="https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png">
             </div>
-            <div class="select-choice" id="paper">
+            <div class="select-choice count-in" id="paper">
                 <img class="img-paper" src="https://res.cloudinary.com/itsellej/image/upload/v1533400143/rock-paper-scissors/paper.png">
             </div>
-            <div class="select-choice" id="scissors">
+            <div class="select-choice count-in" id="scissors">
                 <img class="img-scissors" src="https://res.cloudinary.com/itsellej/image/upload/v1533400144/rock-paper-scissors/scissors.png">
             </div>
         </div>
@@ -76,6 +92,11 @@
     const paperDiv = document.getElementById("paper");
     const scissorsDiv = document.getElementById("scissors");
     const result = document.getElementById('result');
+
+    const computerImage = document.getElementById('computerimage');
+    const rockImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png";
+    const paperImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400143/rock-paper-scissors/paper.png";
+    const scissorsImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400144/rock-paper-scissors/scissors.png";
 
     const computerChoice = getComputerChoice()
 
@@ -90,10 +111,21 @@
         return 'scissors';}
     }
 
+    function changeComputerImage(computerChoice) {
+        if(computerChoice === 'rock') {
+            computerImage.src = rockImage;
+        } else if (computerChoice === 'paper') {
+            computerImage.src = paperImage;
+        } else if (computerChoice === 'scissors') {
+            computerImage.src = scissorsImage;
+        }
+    }
+
     function determineWinner(userChoice, computerChoice) {
 
         //  scenarios where there is a tie
         if (userChoice === computerChoice) {
+            changeComputerImage(computerChoice);
             return 'It\'s a tie!';
         };
 
@@ -101,22 +133,24 @@
         if ((userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
             (userChoice === 'scissors' && computerChoice === 'paper')) {
+            changeComputerImage(computerChoice);
             return 'You win!';
         };
         
         // all other scenarios, computer wins per automatic
+        changeComputerImage(computerChoice);
         return 'Sorry, the computer wins!';
     };
 
-    rock.addEventListener('click',function() {
+    rockDiv.addEventListener('click',function() {
     result.innerHTML = determineWinner("rock", computerChoice);
     });
 
-    paper.addEventListener('click', function() {
+    paperDiv.addEventListener('click', function() {
     result.innerHTML = determineWinner("paper", computerChoice);
     });
 
-    scissors.addEventListener('click', function() {
+    scissorsDiv.addEventListener('click', function() {
     result.innerHTML = determineWinner("scissors", computerChoice);
     });
 
