@@ -1,5 +1,5 @@
-const { RockPaperScissors } =  require('./spec.helper')
-let determineWinner = require('../src/js/rockpaperscissors.js')
+require('./spec.helper');
+require('../src/js/rockpaperscissors');
 
 describe('rockPaperScissors', () => {
     
