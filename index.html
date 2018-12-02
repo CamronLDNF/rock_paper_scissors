@@ -3,6 +3,8 @@
 <head>
 <title>Rock Paper Scissors</title>
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
         @keyframes count-in {
             0% {
                 transform: translateY(0)
@@ -15,19 +17,27 @@
             }
         }
         .count-in {
-            animation: .5s  count-in 100;
+            animation: .5s  count-in 1000;
         }
         .container {
+            font-family: 'Lato', sans-serif;
             width: 700px;
             margin: 0 auto;
             text-align: center;
             padding: 25px;
-            background-color: #70c6e3;
+            background-color:hsla(216, 45%, 53%, 0.8);
             box-shadow: 0 0 34px 8px rgba(0,0,0,0.4);
             border-radius: 0.5rem;
+            text-shadow: 0 3px 4px rgba(0,0,0,0.4);
+            color: #fff;
+        }
+        h1 {
+            margin-top: -2px;
+            font-size: 3rem;
         }
         .img-computer {
-            width: 230px;
+            margin-top: 5px;
+            width: 250px;
         }
         .choice {
             height: 150px;
@@ -35,9 +45,10 @@
         .img-rock, .img-paper, .img-scissors {
             width: 130px;
             border: solid 1px rgba(0,0,0,0.1);
-            box-shadow: 5px 6px 7px #888888;
+            box-shadow: 1px 1px 1px 0.5px #70c6e3;
             border-radius: 2rem;
             margin: 10px 7px;
+            background-color: #527ebe;
         }
         .img-rock:hover, .img-paper:hover, .img-scissors:hover {
             background-color: #89a8d6;
@@ -51,12 +62,21 @@
         .select-choice {
             display: inline-block;
         }
+        #computer-says {
+            height: 20px;
+        }
         #result{
-            font-size: 1.4rem;
+            height: 40px;
+            font-size: 2rem;
             font-weight: 600;
+            color: #f8c725;
+        }
+        #instruction {
+            margin-top: 10px;
+            font-size: 1.5rem;
         }
     </style>
-    <script src="/src/js/rockpaperscissors.js" defer></script>
+    <!-- <script src="/src/js/rockpaperscissors.js" defer></script> -->
 </head>
 <body>
     <div class="container">
@@ -66,12 +86,12 @@
         <div class="computer">
             <div class="computerchoice"></div>
             <img class="img-computer" id="computerimage" src="http://is5.mzstatic.com/image/thumb/Purple118/v4/63/2e/de/632ede7d-21ce-050f-7629-b9f4f0d2f833/source/512x512bb.png">
-            <p>Computer</p>
+            <p id="computer-says">Computer says:</p>
         </div>
         
-        <div id="result">Results</div>
+        <div id="result"></div>
 
-        <p id="instruction">Select your weapon of choice:</p>
+        <p id="instruction">Select your weapon of choice, amigo!</p>
         <div class="choice">
             <div class="select-choice count-in" id="rock">
                 <img class="img-rock" src="https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png">
@@ -88,17 +108,22 @@
 
     <script>
 
-    const rockDiv = document.getElementById("rock");
-    const paperDiv = document.getElementById("paper");
-    const scissorsDiv = document.getElementById("scissors");
-    const result = document.getElementById('result');
+    const rockDiv = document.getElementById('rock');
+    const paperDiv = document.getElementById('paper');
+    const scissorsDiv = document.getElementById('scissors');
+    const instruction = document.getElementById('instruction');
 
-    const computerImage = document.getElementById('computerimage');
+    let computerSays = document.getElementById('computer-says');
+    let result = document.getElementById('result');
+    let computerImage = document.getElementById('computerimage');
+
+    const gameImage = "http://is5.mzstatic.com/image/thumb/Purple118/v4/63/2e/de/632ede7d-21ce-050f-7629-b9f4f0d2f833/source/512x512bb.png"
     const rockImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png";
     const paperImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400143/rock-paper-scissors/paper.png";
     const scissorsImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400144/rock-paper-scissors/scissors.png";
 
-    const computerChoice = getComputerChoice()
+    let computerChoice = getComputerChoice()
+    let userChoice
 
     function getComputerChoice() {
         number = Math.floor(Math.random()*2)
@@ -121,11 +146,21 @@
         }
     }
 
+    function resetGame() {
+        setTimeout(function(){ computerImage.src = gameImage;
+        // computerChoice = '';
+        // userChoice = '';
+        }, 1500);
+    }
+
     function determineWinner(userChoice, computerChoice) {
 
         //  scenarios where there is a tie
         if (userChoice === computerChoice) {
             changeComputerImage(computerChoice);
+            computerSays.innerHTML = '';
+            instruction.innerHTML = 'Play again:';
+            resetGame();
             return 'It\'s a tie!';
         };
 
@@ -134,11 +169,17 @@
             (userChoice === 'paper' && computerChoice === 'rock') ||
             (userChoice === 'scissors' && computerChoice === 'paper')) {
             changeComputerImage(computerChoice);
+            computerSays.innerHTML = '';
+            instruction.innerHTML = 'Play again:';
+            resetGame();
             return 'You win!';
         };
         
         // all other scenarios, computer wins per automatic
         changeComputerImage(computerChoice);
+        computerSays.innerHTML = '';
+        instruction.innerHTML = 'Play again:';
+        resetGame();
         return 'Sorry, the computer wins!';
     };
 
