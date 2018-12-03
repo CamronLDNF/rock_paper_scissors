@@ -1,11 +1,10 @@
-const rockDiv = document.getElementById('rock');
-const paperDiv = document.getElementById('paper');
-const scissorsDiv = document.getElementById('scissors');
-const instruction = document.getElementById('instruction');
-
-let computerSays = document.getElementById('computer-says');
-let result = document.getElementById('result');
-let computerImage = document.getElementById('computerimage');
+let rockDiv = document.getElementById('rock')
+let paperDiv = document.getElementById('paper')
+let scissorsDiv = document.getElementById('scissors')
+let instruction = document.getElementById('instruction')
+let computerSays = document.getElementById('computer-says')
+let result = document.getElementById('result')
+let computerImage = document.getElementById('computerimage')
 
 const gameImage = "http://is5.mzstatic.com/image/thumb/Purple118/v4/63/2e/de/632ede7d-21ce-050f-7629-b9f4f0d2f833/source/512x512bb.png"
 const rockImage = "https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png";
@@ -86,4 +85,4 @@ function playGame() {
     });
 }
 
-playGame();
+// playGame();

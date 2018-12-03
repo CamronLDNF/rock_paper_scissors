@@ -1,7 +1,8 @@
-require('./spec.helper');
-require('../src/js/rockpaperscissors');
+const { RockPaperScissors }  =  require('./spec.helper')
 
-describe('rockPaperScissors', () => {
+describe('Rock Paper Scissors', () => {
+
+    let rockPaperScissors = new RockPaperScissors
     
     describe('Player selects "rock"', () => {
         it('should return "Tie!" on "rock", "rock"', () => {
